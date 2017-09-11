@@ -1,0 +1,23 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Marck Script', cursive;
+}
+
+#top{
+	text-align: center;
+	font-size: 50px;
+	margin-top: -42px;
+
+
+}
+
+#container{
+    position: relative;
+    height: 650px;
+    width: 30%;
+    left: 35%;
+    margin-top: 20px;;
+    background-color: #7FD5DB;
+    overflow: hidden;
+}
