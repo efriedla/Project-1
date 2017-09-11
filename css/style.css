@@ -8,16 +8,21 @@ html, body{
 	text-align: center;
 	font-size: 50px;
 	margin-top: -42px;
-
-
 }
 
-#container{
+/*#container{
     position: relative;
-    height: 650px;
+    height: 70vh;
     width: 30%;
     left: 35%;
-    margin-top: 20px;;
+    margin-top: -20px;
     background-color: #7FD5DB;
     overflow: hidden;
+}*/
+
+canvas{
+    border: 1px solid black;
+    background-color:lightblue;
+    position: relative;
+    left: 30%;
 }
