@@ -1,57 +1,73 @@
-var myGamePiece;
+var canvas;
+var ctx;
+var x = 350; //horizontal
+var y = 650; //vertical 
+var dx = 8; //volocity speed
+var dy = 8; 
+var cW;
+var cH;
+var fish = [
+       { "id":"enemy1", "x":100,"y":-20,"w":20,"h":10},
+       { "id":"enemy2", "x":525,"y":-50,"w":40,"h":20},
+       { "id":"enemy1", "x":350,"y":-160,"w":40,"h":20},
+       { "id":"enemy1", "x":450,"y":-190,"w":40,"h":20},
+       { "id":"enemy1", "x":150,"y":-230,"w":40,"h":20},
+       { "id":"enemy1", "x":550,"y":-370,"w":40,"h":20},
+       { "id":"enemy1", "x":350,"y":-420,"w":40,"h":20},
+       { "id":"enemy1", "x":250,"y":-530,"w":40,"h":20}
 
-function startGame() {
-    myGameArea.start();
-    myGamePiece = new component(30, 30, "yellow", 180, 440);
+        ];
+window.onload =function() {
+    window.addEventListener('keydown', pressArrowKeys, true);
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext("2d");
+    cW = ctx.canvas.width;
+    cH = ctx.canvas.height;
+    return setInterval(draw, Math.floor((Math.random() * 20) + 5)); //calls draw function
+console.log("loaded");
 }
 
-var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 500;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 20);
-        window.addEventListener('keydown', function (e) {
-            myGameArea.key = e.keyCode;
-        })
-        window.addEventListener('keyup', function (e) {
-            myGameArea.key = false;
-        })
-    }, 
-    clear : function(){
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+//make a for loop where enemies come down at differenct times shapes and sizes
+/*function makeFish(){
+    for(var i = 0; i < 10; i++){
+        ctx.fillStyle = "red";
+        Math.random*650
+
+    }
+}*/
+//fishes swim down screen
+function renderFish(){
+    for(var i = 0; i < fish.length; i++){
+       
+        ctx.fillStyle = "orange";
+        ctx.fillRect(fish[i].x, fish[i].y+=1, fish[i].w, fish[i].h);
+       
     }
 }
 
-function component(width, height, color, x, y) {
-    this.gamearea = myGameArea;
-    this.width = width;
-    this.height = height;
-    this.speedX = 0;
-    this.speedY = 0;    
-    this.x = x;
-    this.y = y;    
-    this.update = function() {
-        ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+
+function pressArrowKeys (e) {
+    switch(e.keyCode){
+        case 38: //up
+            y -= dy;
+            break;
+        case 40: //down
+            y += dy;
+            break;
+        case 37: //left
+            x -= dx;
+            break;
+        case 39: //right
+            x += dx;
+            break;
     }
-    this.newPos = function() {
-        this.x += this.speedX;
-        this.y += this.speedY;        
-    }
+}
+//main fish or circle
+function draw() {
+    ctx.clearRect(0, 0, cW, cH);
+    renderFish();
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, 2 * Math.PI);
+    ctx.stroke();
 }
 
-function updateGameArea() {
-    myGameArea.clear();
-    myGamePiece.speedX = 0;
-    myGamePiece.speedY = 0;    
-    if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
-    if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
-    if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
-    if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
-    myGamePiece.newPos();    
-    myGamePiece.update();
-}
