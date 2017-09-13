@@ -6,6 +6,7 @@ var dx = 8; //volocity speed
 var dy = 8; 
 var cW;
 var cH;
+var player1;
 var fish = [
        { "id":"enemy1", "x":100,"y":-20,"w":20,"h":10},
        { "id":"enemy2", "x":525,"y":-50,"w":40,"h":20},
@@ -23,7 +24,7 @@ window.onload =function() {
     ctx = canvas.getContext("2d");
     cW = ctx.canvas.width;
     cH = ctx.canvas.height;
-    return setInterval(draw, Math.floor((Math.random() * 20) + 5)); //calls draw function
+    return setInterval(draw, 20); //calls draw function
 console.log("loaded");
 }
 
@@ -35,16 +36,27 @@ console.log("loaded");
 
     }
 }*/
+
 //fishes swim down screen
 function renderFish(){
     for(var i = 0; i < fish.length; i++){
        
         ctx.fillStyle = "orange";
         ctx.fillRect(fish[i].x, fish[i].y+=1, fish[i].w, fish[i].h);
-       
+
+     //   console.log (x, y);     
     }
 }
+function renderPlayer1(){
+  var fish2 = document.getElementById('fish2');
+    ctx.drawImage(fish2, x, y, 30, 50);
+  
+}
 
+
+function getPlayerPos (canva, evt){
+
+}
 
 function pressArrowKeys (e) {
     switch(e.keyCode){
@@ -60,14 +72,56 @@ function pressArrowKeys (e) {
         case 39: //right
             x += dx;
             break;
+
     }
 }
+//collision
+function Fishes(x, y, radius, color){
+    this.x = x;
+  this.y = y;
+  this.radius = radius;
+  this.color = color;
+
+  this.update = function() {
+    
+    this.draw();
+  };
+
+  this.draw = function() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);  
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.closePath();
+  };
+}
+let enimies1;
+function init(){
+  enemies1 = new Fishes(100, 15, 25, "orange");
+
+}
+
+//check for collision
+var checkForCollision = function(x1, y1, fish) {
+  var xDistance = fish.x - x1;
+  var yDistance = fish.y - y1;
+  var dngrZone = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+  if (dngrZone < 25) {
+    fish.x = 450;
+    fish.y = -1;
+    console.log ('gulp!');
+  }
+  return dngrZone;
+};
+
+
 //main fish or circle
 function draw() {
     ctx.clearRect(0, 0, cW, cH);
-    renderFish();
-    ctx.beginPath();
-    ctx.arc(x, y, 10, 0, 2 * Math.PI);
-    ctx.stroke();
+   renderPlayer1();
+   checkForCollision(x, y, fish[0]);
+   renderFish();
+
 }
 
+init();
