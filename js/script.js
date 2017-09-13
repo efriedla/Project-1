@@ -18,7 +18,7 @@ var cH;
 var player1;
 var r = 45;
 var fish = [
-       { "id":"little1", "x":100,"y":-20,"w":20,"h":20, "r": 20},
+       { "id":"little1", "x":100,"y":-20,"w":90,"h":90, "r": 90},
        { "id":"little2", "x":525,"y":-50,"w":20,"h":20, "r": 20},
        { "id":"little3", "x":350,"y":-160,"w":20,"h":20, "r": 20},
        { "id":"little4", "x":450,"y":-190,"w":50,"h":50, "r": 50},
@@ -42,20 +42,18 @@ console.log("loaded");
 //fishes swim down screen
 function renderFish(){
     for(var i = 0; i < fish.length; i++){
-       
-        ctx.fillStyle = "orange";
-        ctx.fillRect(fish[i].x, fish[i].y+=1, fish[i].w, fish[i].h, fish[i].r);
-
-     //   console.log (x, y);     
+        var enemy = document.getElementById("enemy");
+      
+        ctx.drawImage(enemy, fish[i].x, fish[i].y+=1, fish[i].w, fish[i].h);
+    
     }
+    //console.log("enemy fish x=" + fish[0].x + ", y=" + fish[0].y);
 }
 function renderPlayer1(){
   var fish2 = document.getElementById('fish2');
     ctx.drawImage(fish2, x, y, w, h);
   
 }
-
-
 
 function pressArrowKeys (e) {
     switch(e.keyCode){
@@ -75,33 +73,37 @@ function pressArrowKeys (e) {
     }
 }
 
-
 //check for collision
 var checkForCollision = function(x1, y1, fish) {
   var xDistance = fish.x - x1;
   var yDistance = fish.y - y1;
 
-  var dngrZone = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
-  if (dngrZone < r) {
-    fish.x = Math.floor((Math.random() *690) + 1);
+  var distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+  if (distance < fish.r) {
+    fish.x = Math.floor((Math.random() * 690) + 1);
     fish.y = -25;
-    CheckForSize();
-    console.log ('gulp!');
+    CheckForSize(fish);
+    
   }
   // CheckForSize();
-  return dngrZone;
+  return distance;
 };
 
+function newGame(){
+  console.log("new game")
+}
 //check size of fish
-var CheckForSize = function(width, height, fishy){
-  for(var i = 0; i < fish.length; i++){
-      if ( fish[i].w > w && fish[i].h > h){
-        alert("game over");
-      }else if(fish[i].w < w && fish[i].h < h) {
-        w += 3;
-        h += 3;
-      /*  r += 10%;*/
-      }
+var CheckForSize = function(fish){
+    if ( fish.w > w && fish.h > h){
+      console.log ('gulp!');
+      alert("game over");
+      // newGame();
+    }else /*(fish[i].w < w && fish[i].h < h) */{
+      w += 3;
+      h += 3;
+      r += 2;
+      console.log("grew");
+    /*  r += 10%;*/
     }
 }
 
@@ -122,3 +124,4 @@ function draw() {
    renderFish();
 
 }
+
