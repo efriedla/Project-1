@@ -1,9 +1,18 @@
+/*TO DO LIST
+  MAKE OTHER FISH INTO CIRCLES SO I CAN CHECK IF THE FISH HAS HIT THE RADIUS
+  - FIGURE OUT HOW TO REGENERATE THE FISH ARRAY
+  GAME OVER TO RESTART GAME
+  
+*/
+
 var canvas;
 var ctx;
 var x = 350; //horizontal
 var y = 650; //vertical 
 var dx = 8; //volocity speed
 var dy = 8; 
+var w = 30;
+var h = 50;
 var cW;
 var cH;
 var player1;
@@ -11,7 +20,7 @@ var fish = [
        { "id":"enemy1", "x":100,"y":-20,"w":20,"h":10},
        { "id":"enemy2", "x":525,"y":-50,"w":40,"h":20},
        { "id":"enemy1", "x":350,"y":-160,"w":40,"h":20},
-       { "id":"enemy1", "x":450,"y":-190,"w":40,"h":20},
+       { "id":"enemy1", "x":450,"y":-190,"w":100,"h":50},
        { "id":"enemy1", "x":150,"y":-230,"w":40,"h":20},
        { "id":"enemy1", "x":550,"y":-370,"w":40,"h":20},
        { "id":"enemy1", "x":350,"y":-420,"w":40,"h":20},
@@ -28,14 +37,6 @@ window.onload =function() {
 console.log("loaded");
 }
 
-//make a for loop where enemies come down at differenct times shapes and sizes
-/*function makeFish(){
-    for(var i = 0; i < 10; i++){
-        ctx.fillStyle = "red";
-        Math.random*650
-
-    }
-}*/
 
 //fishes swim down screen
 function renderFish(){
@@ -49,14 +50,11 @@ function renderFish(){
 }
 function renderPlayer1(){
   var fish2 = document.getElementById('fish2');
-    ctx.drawImage(fish2, x, y, 30, 50);
+    ctx.drawImage(fish2, x, y, w, h);
   
 }
 
 
-function getPlayerPos (canva, evt){
-
-}
 
 function pressArrowKeys (e) {
     switch(e.keyCode){
@@ -75,53 +73,51 @@ function pressArrowKeys (e) {
 
     }
 }
-//collision
-function Fishes(x, y, radius, color){
-    this.x = x;
-  this.y = y;
-  this.radius = radius;
-  this.color = color;
 
-  this.update = function() {
-    
-    this.draw();
-  };
-
-  this.draw = function() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);  
-    ctx.fillStyle = this.color;
-    ctx.fill();
-    ctx.closePath();
-  };
-}
-let enimies1;
-function init(){
-  enemies1 = new Fishes(100, 15, 25, "orange");
-
-}
 
 //check for collision
 var checkForCollision = function(x1, y1, fish) {
   var xDistance = fish.x - x1;
   var yDistance = fish.y - y1;
+
   var dngrZone = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
   if (dngrZone < 25) {
-    fish.x = 450;
-    fish.y = -1;
+    fish.x = Math.floor((Math.random() *690) + 1);
+    fish.y = -5;
+    CheckForSize();
     console.log ('gulp!');
   }
+  // CheckForSize();
   return dngrZone;
 };
+
+//check size of fish
+var CheckForSize = function(width, height, fishy){
+  for(var i = 0; i < fish.length; i++){
+      if ( fish[i].w > w && fish[i].h > h){
+        alert("game over");
+      }else if(fish[i].w < w && fish[i].h < h) {
+        w += 3;
+        h += 3;
+      }
+    }
+}
 
 
 //main fish or circle
 function draw() {
+
     ctx.clearRect(0, 0, cW, cH);
-   renderPlayer1();
    checkForCollision(x, y, fish[0]);
+   checkForCollision(x, y, fish[1]);
+   checkForCollision(x, y, fish[2]);
+   checkForCollision(x, y, fish[3]);
+   checkForCollision(x, y, fish[4]);
+   checkForCollision(x, y, fish[5]);
+   checkForCollision(x, y, fish[6]);
+   checkForCollision(x, y, fish[7]);
+   renderPlayer1();
    renderFish();
 
 }
 
-init();
