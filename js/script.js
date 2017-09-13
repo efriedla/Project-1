@@ -16,15 +16,16 @@ var h = 50;
 var cW;
 var cH;
 var player1;
+var r = 45;
 var fish = [
-       { "id":"enemy1", "x":100,"y":-20,"w":20,"h":10},
-       { "id":"enemy2", "x":525,"y":-50,"w":40,"h":20},
-       { "id":"enemy1", "x":350,"y":-160,"w":40,"h":20},
-       { "id":"enemy1", "x":450,"y":-190,"w":100,"h":50},
-       { "id":"enemy1", "x":150,"y":-230,"w":40,"h":20},
-       { "id":"enemy1", "x":550,"y":-370,"w":40,"h":20},
-       { "id":"enemy1", "x":350,"y":-420,"w":40,"h":20},
-       { "id":"enemy1", "x":250,"y":-530,"w":40,"h":20}
+       { "id":"little1", "x":100,"y":-20,"w":20,"h":20, "r": 20},
+       { "id":"little2", "x":525,"y":-50,"w":20,"h":20, "r": 20},
+       { "id":"little3", "x":350,"y":-160,"w":20,"h":20, "r": 20},
+       { "id":"little4", "x":450,"y":-190,"w":50,"h":50, "r": 50},
+       { "id":"little5", "x":150,"y":-230,"w":50,"h":50, "r": 50},
+       { "id":"little6", "x":550,"y":-370,"w":50,"h":50, "r": 50},
+       { "id":"little7", "x":350,"y":-420,"w":50,"h":50, "r": 50},
+       { "id":"little8", "x":250,"y":-530,"w":50,"h":50, "r": 50},
 
         ];
 window.onload =function() {
@@ -43,7 +44,7 @@ function renderFish(){
     for(var i = 0; i < fish.length; i++){
        
         ctx.fillStyle = "orange";
-        ctx.fillRect(fish[i].x, fish[i].y+=1, fish[i].w, fish[i].h);
+        ctx.fillRect(fish[i].x, fish[i].y+=1, fish[i].w, fish[i].h, fish[i].r);
 
      //   console.log (x, y);     
     }
@@ -81,9 +82,9 @@ var checkForCollision = function(x1, y1, fish) {
   var yDistance = fish.y - y1;
 
   var dngrZone = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
-  if (dngrZone < 25) {
+  if (dngrZone < r) {
     fish.x = Math.floor((Math.random() *690) + 1);
-    fish.y = -5;
+    fish.y = -25;
     CheckForSize();
     console.log ('gulp!');
   }
@@ -99,6 +100,7 @@ var CheckForSize = function(width, height, fishy){
       }else if(fish[i].w < w && fish[i].h < h) {
         w += 3;
         h += 3;
+      /*  r += 10%;*/
       }
     }
 }
@@ -120,4 +122,3 @@ function draw() {
    renderFish();
 
 }
-
