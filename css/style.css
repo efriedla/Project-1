@@ -5,30 +5,42 @@ html, body{
 }
 body{
     height: 100%;
+    background-color: green;
+}
+#scorebored{
+/*  border: 1px solid black;*/
+    position: relative;
+    display: inline-block;
+    bottom: 600px;
+    left: 100px;
+    background-image: url("../img/shell.png");
+     background-size:cover;
+    width: 150px;
+    height: 100px;
+    padding-top: 5px;
+    padding-left: 8px;
+     box-shadow: 10px 10px 5px black;
+
 }
 
 #top{
     text-align: center;
     font-size: 50px;
+    margin-bottom: -30px;
+     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px lightblue;
+     text-decoration: underline;
 
 }
 canvas{
     border: 1px solid black;
-    background-color:lightblue;
+    background-image: url("../img/water.jpg");
     position: relative;
-    left: 30%;
+    left: 24%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px black;
 
 }
-#scorebored{
-    border: 1px solid black;
-    position: relative;
-    display: inline-block;
-    bottom: 600px;
-    left: 100px;
-    background-image: url("img/shell.png");
-    width: 150px;
-    height: 100px;
-    padding-top: 5px;
-    padding-left: 8px;
 
+img{
+     box-shadow: 10px 10px 5px black; 
 }

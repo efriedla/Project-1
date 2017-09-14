@@ -46,12 +46,43 @@ console.log("loaded");
 function renderFish(){
     for(var i = 0; i < fish.length; i++){
         var enemy = document.getElementById("enemy");
+        ctx.drawImage(enemy, fish[i].x , fish[i].y+=.8, fish[i].w, fish[i].h);
       
-        ctx.drawImage(enemy, fish[i].x, fish[i].y+=1, fish[i].w, fish[i].h);
-    
-    }
+/*        switch(fish){
+
+          case fish[i].y < y && fish[i].r > r && fish[i].x > x:
+            ctx.drawImage(enemy, fish[i].x-= x, fish[i].y+=.8, fish[i].w, fish[i].h);
+            break;
+
+          case fish[i].y < y && fish[i].r > r && fish[i].x < x:
+            ctx.drawImage(enemy, fish[i].x+= x, fish[i].y+=.8, fish[i].w, fish[i].h);
+            break;
+
+          case fish[i].y < y && fish[i].r < r && fish[i].x > x:
+            ctx.drawImage(enemy, fish[i].x-= x, fish[i].y+=.8, fish[i].w, fish[i].h);
+            break;
+
+           case fish[i].y < y && fish[i].r < r && fish[i].x < x:
+            ctx.drawImage(enemy, fish[i].x+=x, fish[i].y+=.8, fish[i].w, fish[i].h);
+            break;
+
+           case fish[i].y > y && fish[i].r < r || fish[i].r > r && fish[i].x < x || fish[i].x > x: 
+            ctx.drawImage(enemy, fish[i].x, fish[i].y-= .8, fish[i].w, fish[i].h);
+            break;
+            default:
+             ctx.drawImage(enemy, fish[i].x, fish[i].y= .8, fish[i].w, fish[i].h);
+
+        } */
+
+    /*  if (fish[i].y < y && fish[i].r > r){      
+       ctx.drawImage(enemy, fish[i].x, fish[i].y+=.8, fish[i].w, fish[i].h);
+      } else{
+         ctx.drawImage(enemy, fish[i].x, fish[i].y-=.8, fish[i].w, fish[i].h);
+      }*/
+   }
     //console.log("enemy fish x=" + fish[0].x + ", y=" + fish[0].y);
 }
+
 function renderPlayer1(){
   var fish2 = document.getElementById('fish2');
     ctx.drawImage(fish2, x, y, w, h);
@@ -83,30 +114,42 @@ var checkForCollision = function(x1, y1, fish) {
 
   var distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
   if (distance < fish.r) {
+   // IF FISH EATEN IT GET BIGGER AND RESPOND RANDOMLY ON THE PAGE
     fish.x = Math.floor((Math.random() * 690) + 1);
     fish.y = -25;
+     fish.w += 5;
+    fish.h += 5;
+    fish.r += 3;
+   
+
     CheckForSize(fish);
-    
+    //fish gets too far it will come back AND COME BAKC A LITLE BIGGER
+  } else if(distance > 1100){
+    fish.y = -25;
+    fish.x = Math.floor((Math.random() * 690) + 1);
+     fish.w += 1;
+    fish.h += 1;
+    fish.r += 1;
   }
   // CheckForSize();
   return distance;
 };
 
-function newGame(){
-  console.log("new game")
-}
 //check size of fish
 var CheckForSize = function(fish){
     if ( fish.w > w && fish.h > h){
       console.log ('gulp!');
       alert("game over");
+    
       // newGame();
     }else /*(fish[i].w < w && fish[i].h < h) */{
-      w += 3;
-      h += 3;
-      r += 2;
+      w += 4;
+      h += 4;
+      r += 3;
       score += 1;
-      
+     
+      console.log(fish);
+      //ADD SCORE
       scorebored.textContent = "Score: " + score;
       console.log("grew");
     /*  r += 10%;*/
@@ -128,8 +171,9 @@ function draw() {
    checkForCollision(x, y, fish[7]);
    renderPlayer1();
    renderFish();
+ 
 
 }
 
- setInterval(draw, 20); 
+ setInterval(draw, 30); 
 
