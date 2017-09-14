@@ -13,22 +13,22 @@ var y = 650; //vertical
 var dx = 8; //volocity speed
 var dy = 8; 
 var w = 30;
-var h = 50;
+var h = 40;
 var cW;
 var cH;
 var player1;
 var scorebored= document.getElementById("scorebored");
 var score = 0;
-var r = 45;
+var r = 35;
 var fish = [
-       { "id":"little1", "x":100,"y":-20,"w":90,"h":90, "r": 90},
-       { "id":"little2", "x":525,"y":-50,"w":20,"h":20, "r": 20},
-       { "id":"little3", "x":350,"y":-160,"w":20,"h":20, "r": 20},
-       { "id":"little4", "x":450,"y":-190,"w":50,"h":50, "r": 50},
-       { "id":"little5", "x":150,"y":-230,"w":50,"h":50, "r": 50},
-       { "id":"little6", "x":550,"y":-370,"w":50,"h":50, "r": 50},
-       { "id":"little7", "x":350,"y":-420,"w":50,"h":50, "r": 50},
-       { "id":"little8", "x":250,"y":-530,"w":50,"h":50, "r": 50},
+       { "id":"little1", "x":100,"y":-20,"w":90,"h":90, "r": 90, "ox":100,"oy":-20,"ow":90,"oh":90, "or": 70},
+       { "id":"little2", "x":525,"y":-50,"w":20,"h":20, "r": 20, "ox":525,"oy":-50,"ow":20,"oh":20, "or": 20},
+       { "id":"little3", "x":350,"y":-160,"w":20,"h":20, "r": 20, "ox":350,"oy":-160,"ow":20,"oh":20, "or": 20},
+       { "id":"little4", "x":450,"y":-190,"w":30,"h":30, "r": 30, "ox":450,"oy":-190,"ow":30,"oh":30, "or": 30},
+       { "id":"little5", "x":150,"y":-230,"w":80,"h":80, "r": 60, "ox":150,"oy":-230,"ow":80,"oh":80, "or": 60},
+       { "id":"little6", "x":550,"y":-370,"w":35,"h":35, "r": 35, "ox":550,"oy":-300,"ow":35,"oh":35, "or": 35},
+       { "id":"little7", "x":350,"y":-420,"w":40,"h":40, "r": 40, "ox":350,"oy":-320,"ow":40,"oh":40, "or": 40},
+       { "id":"little8", "x":250,"y":-530,"w":70,"h":70, "r": 50, "ox":250,"oy":-390,"ow":70,"oh":70, "or": 50},
 
         ];
 window.onload =function() {
@@ -48,37 +48,7 @@ function renderFish(){
         var enemy = document.getElementById("enemy");
         ctx.drawImage(enemy, fish[i].x , fish[i].y+=.8, fish[i].w, fish[i].h);
       
-/*        switch(fish){
 
-          case fish[i].y < y && fish[i].r > r && fish[i].x > x:
-            ctx.drawImage(enemy, fish[i].x-= x, fish[i].y+=.8, fish[i].w, fish[i].h);
-            break;
-
-          case fish[i].y < y && fish[i].r > r && fish[i].x < x:
-            ctx.drawImage(enemy, fish[i].x+= x, fish[i].y+=.8, fish[i].w, fish[i].h);
-            break;
-
-          case fish[i].y < y && fish[i].r < r && fish[i].x > x:
-            ctx.drawImage(enemy, fish[i].x-= x, fish[i].y+=.8, fish[i].w, fish[i].h);
-            break;
-
-           case fish[i].y < y && fish[i].r < r && fish[i].x < x:
-            ctx.drawImage(enemy, fish[i].x+=x, fish[i].y+=.8, fish[i].w, fish[i].h);
-            break;
-
-           case fish[i].y > y && fish[i].r < r || fish[i].r > r && fish[i].x < x || fish[i].x > x: 
-            ctx.drawImage(enemy, fish[i].x, fish[i].y-= .8, fish[i].w, fish[i].h);
-            break;
-            default:
-             ctx.drawImage(enemy, fish[i].x, fish[i].y= .8, fish[i].w, fish[i].h);
-
-        } */
-
-    /*  if (fish[i].y < y && fish[i].r > r){      
-       ctx.drawImage(enemy, fish[i].x, fish[i].y+=.8, fish[i].w, fish[i].h);
-      } else{
-         ctx.drawImage(enemy, fish[i].x, fish[i].y-=.8, fish[i].w, fish[i].h);
-      }*/
    }
     //console.log("enemy fish x=" + fish[0].x + ", y=" + fish[0].y);
 }
@@ -135,12 +105,32 @@ var checkForCollision = function(x1, y1, fish) {
   return distance;
 };
 
+function endGame(){
+  score = 0;
+  x = 350;
+  y = 650;
+  w = 30;
+  h = 40;
+  r = 45;
+   scorebored.textContent = "Score: " + score;
+   //ADD THE SIZE BACK TO ORIGINAL SIZE
+   for(var i = 0; i < fish.length; i++){
+      fish[i].x = fish[i].ox; 
+      fish[i].y = fish[i].oy; 
+      fish[i].w = fish[i].ow; 
+      fish[i].h = fish[i].oh; 
+      fish[i].r = fish[i].or; 
+      }
+
+
+}
+
 //check size of fish
 var CheckForSize = function(fish){
     if ( fish.w > w && fish.h > h){
       console.log ('gulp!');
       alert("game over");
-    
+      endGame();
       // newGame();
     }else /*(fish[i].w < w && fish[i].h < h) */{
       w += 4;
