@@ -1,8 +1,9 @@
 /*TO DO LIST
-  MAKE OTHER FISH INTO CIRCLES SO I CAN CHECK IF THE FISH HAS HIT THE RADIUS
-  - FIGURE OUT HOW TO REGENERATE THE FISH ARRAY
-  GAME OVER TO RESTART GAME
-  
+1. new game after die
+2 get counter to count fish
+3. put fish array on loop
+5. add animated bubbles to player one
+6. add sound
 */
 
 var canvas;
@@ -16,6 +17,8 @@ var h = 50;
 var cW;
 var cH;
 var player1;
+var scorebored= document.getElementById("scorebored");
+var score = 0;
 var r = 45;
 var fish = [
        { "id":"little1", "x":100,"y":-20,"w":90,"h":90, "r": 90},
@@ -34,7 +37,7 @@ window.onload =function() {
     ctx = canvas.getContext("2d");
     cW = ctx.canvas.width;
     cH = ctx.canvas.height;
-    return setInterval(draw, 20); //calls draw function
+   /* return setInterval(draw, 20); *///calls draw function
 console.log("loaded");
 }
 
@@ -102,6 +105,9 @@ var CheckForSize = function(fish){
       w += 3;
       h += 3;
       r += 2;
+      score += 1;
+      
+      scorebored.textContent = "Score: " + score;
       console.log("grew");
     /*  r += 10%;*/
     }
@@ -124,4 +130,6 @@ function draw() {
    renderFish();
 
 }
+
+ setInterval(draw, 20); 
 
