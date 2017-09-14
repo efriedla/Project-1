@@ -6,20 +6,23 @@ html, body{
 body{
     height: 100%;
     background-color: green;
+    background-image: url("../img/water.jpg");
+    background-size:cover;
+    background-position: center;
+    /*background-height: 2000px;*/
 }
 #scorebored{
-/*  border: 1px solid black;*/
     position: relative;
     display: inline-block;
-    bottom: 600px;
     left: 100px;
     background-image: url("../img/shell.png");
      background-size:cover;
-    width: 150px;
-    height: 100px;
-    padding-top: 5px;
-    padding-left: 8px;
-     box-shadow: 10px 10px 5px black;
+    width: 290px;
+    height: 250px;
+    padding-top: 120px;
+    padding-left: 110px;
+     font-size: 50px;
+     font-style: bold;
 
 }
 
@@ -33,14 +36,12 @@ body{
 }
 canvas{
     border: 1px solid black;
-    background-image: url("../img/water.jpg");
-    position: relative;
-    left: 24%;
+    background-image: url("../img/bubbles1.jpg");
+     background-size:cover;
+     position: absolute;
+     left: 35%;
+   
     border-radius: 10px;
     box-shadow: 10px 10px 5px black;
 
-}
-
-img{
-     box-shadow: 10px 10px 5px black; 
 }
