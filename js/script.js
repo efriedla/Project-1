@@ -18,14 +18,14 @@ var scorebored= document.getElementById("scorebored");
 var score = 0;
 var r = 35;
 var fish = [
-       { "id":"little1", "x":100,"y":-20,"w":90,"h":90, "r": 70, "ox":100,"oy":-20,"ow":90,"oh":90, "or": 70},
-       { "id":"little2", "x":525,"y":-50,"w":20,"h":20, "r": 20, "ox":525,"oy":-50,"ow":20,"oh":20, "or": 20},
-       { "id":"little3", "x":350,"y":-160,"w":20,"h":20, "r": 20, "ox":350,"oy":-160,"ow":20,"oh":20, "or": 20},
-       { "id":"little4", "x":450,"y":-190,"w":30,"h":30, "r": 30, "ox":450,"oy":-190,"ow":30,"oh":30, "or": 30},
-       { "id":"little5", "x":150,"y":-230,"w":80,"h":80, "r": 60, "ox":150,"oy":-230,"ow":80,"oh":80, "or": 60},
-       { "id":"little6", "x":550,"y":-370,"w":35,"h":35, "r": 35, "ox":550,"oy":-300,"ow":35,"oh":35, "or": 35},
-       { "id":"little7", "x":350,"y":-420,"w":40,"h":40, "r": 50, "ox":350,"oy":-320,"ow":40,"oh":40, "or": 40},
-       { "id":"little8", "x":250,"y":-530,"w":70,"h":70, "r": 50, "ox":250,"oy":-390,"ow":70,"oh":70, "or": 50},
+       { "id":"little1", "x":100,"y":-20,"w":90,"h":95, "r": 70, "ox":100,"oy":-90,"ow":90,"oh":95, "or": 70},
+       { "id":"little2", "x":525,"y":-50,"w":20,"h":25, "r": 20, "ox":525,"oy":-100,"ow":20,"oh":25, "or": 20},
+       { "id":"little3", "x":350,"y":-160,"w":20,"h":25, "r": 20, "ox":350,"oy":-160,"ow":20,"oh":25, "or": 20},
+       { "id":"little4", "x":450,"y":-190,"w":20,"h":25, "r": 20, "ox":450,"oy":-190,"ow":20,"oh":25, "or": 20},
+       { "id":"little5", "x":150,"y":-230,"w":80,"h":90, "r": 60, "ox":150,"oy":-230,"ow":80,"oh":85, "or": 60},
+       { "id":"little6", "x":550,"y":-370,"w":15,"h":25, "r": 35, "ox":550,"oy":-300,"ow":15,"oh":20, "or": 15},
+       { "id":"little7", "x":350,"y":-420,"w":40,"h":50, "r": 40, "ox":350,"oy":-320,"ow":40,"oh":45, "or": 40},
+       { "id":"little8", "x":250,"y":-530,"w":70,"h":80, "r": 50, "ox":250,"oy":-390,"ow":70,"oh":75, "or": 50},
 
         ];
 window.onload =function() {
@@ -82,18 +82,18 @@ var checkForCollision = function(x1, y1, fish) {
   var distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
   if (distance < fish.r) {
    // IF FISH EATEN IT GET BIGGER AND RESPOND RANDOMLY ON THE PAGE
-    fish.x = Math.floor((Math.random() * 690) + 1);
-    fish.y = -45;
-     fish.w += 10;
-    fish.h += 10;
-    fish.r += 5;
+      fish.x = Math.floor((Math.random() * 690) + 1);
+    fish.y = Math.floor((Math.random() * -290) - 20);
+     fish.w += 15;
+    fish.h += 15;
+    fish.r += 8;
    
 
     CheckForSize(fish);
     //fish gets too far it will come back AND COME BAKC A LITLE BIGGER
-  } else if(distance > 1100){
-    fish.y = -45;
+  } else if(distance > 1000){
     fish.x = Math.floor((Math.random() * 690) + 1);
+    fish.y = Math.floor((Math.random() * -290) - 20);
      fish.w += 1;
     fish.h += 1;
     fish.r += 1;
@@ -101,7 +101,6 @@ var checkForCollision = function(x1, y1, fish) {
   // CheckForSize();
   return distance;
 };
-
 function endGame(){
   score = 0;
   x = 350;
@@ -119,12 +118,23 @@ function endGame(){
       fish[i].r = fish[i].or; 
       }
 }
-
 //check size of fish
 var CheckForSize = function(fish){
     if ( fish.w > w && fish.h > h){
       console.log ('gulp!');
-      alert("game over");
+      /* swal(  'Gulp...',
+  'BETTER LUCK NEXT TIME!',
+  'error');*/
+    swal({
+  title: 'GULP!',
+  text: 'BETTER LUCK NEXT TIME!',
+  imageUrl: 'img/fishfood.jpg',
+  imageWidth: 400,
+  imageHeight: 200,
+  imageAlt: 'Custom image',
+  animation: false
+})
+
       endGame();
       // newGame();
     }else /*(fish[i].w < w && fish[i].h < h) */{
@@ -132,16 +142,12 @@ var CheckForSize = function(fish){
       h += 4;
       r += 3;
       score += 1;
-     
-      console.log(fish);
       //ADD SCORE
       scorebored.textContent = "Score: " + score;
       console.log("grew");
     /*  r += 10%;*/
     }
 }
-
-
 //main fish or circle
 function draw() {
 
