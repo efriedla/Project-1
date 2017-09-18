@@ -1,8 +1,3 @@
-/*TO DO LIST
-5. add animated bubbles to player one
-6. add sound
-*/
-
 var canvas;
 var ctx;
 var x = 350; //horizontal
@@ -10,13 +5,19 @@ var y = 650; //vertical
 var dx = 8; //volocity speed
 var dy = 8; 
 var w = 30;
-var h = 40;
+var h = 45;
 var cW;
 var cH;
 var player1;
 var scorebored= document.getElementById("scorebored");
 var score = 0;
 var r = 35;
+var waterSound = new Audio("audio/water.mp3");
+var splashSound = new Audio("audio/splash1.mp3");
+var cowboySound = new Audio("audio/cowboy.mp3");
+var biteSound = new Audio("audio/bite.mp3");
+var music = document.getElementById("myAudio");  
+
 var fish = [
        { "id":"little1", "x":100,"y":-20,"w":90,"h":95, "r": 70, "ox":100,"oy":-90,"ow":90,"oh":95, "or": 70},
        { "id":"little2", "x":525,"y":-50,"w":20,"h":25, "r": 20, "ox":525,"oy":-100,"ow":20,"oh":25, "or": 20},
@@ -36,20 +37,16 @@ window.onload =function() {
     cH = ctx.canvas.height;
    /* return setInterval(draw, 20); *///calls draw function
 console.log("loaded");
+ waterSound.play();
 }
-
-
 //fishes swim down screen
 function renderFish(){
     for(var i = 0; i < fish.length; i++){
         var enemy = document.getElementById("enemy");
         ctx.drawImage(enemy, fish[i].x , fish[i].y+=.8, fish[i].w, fish[i].h);
-      
-
    }
-    //console.log("enemy fish x=" + fish[0].x + ", y=" + fish[0].y);
 }
-
+//CREATE PLAYER ONE
 function renderPlayer1(){
   var fish2 = document.getElementById('fish2');
     ctx.drawImage(fish2, x, y, w, h);
@@ -71,6 +68,7 @@ function pressArrowKeys (e) {
             x += dx;
             break;
 
+
     }
 }
 
@@ -82,13 +80,15 @@ var checkForCollision = function(x1, y1, fish) {
   var distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
   if (distance < fish.r) {
    // IF FISH EATEN IT GET BIGGER AND RESPOND RANDOMLY ON THE PAGE
-      fish.x = Math.floor((Math.random() * 690) + 1);
+    fish.x = Math.floor((Math.random() * 690) + 1);
     fish.y = Math.floor((Math.random() * -290) - 20);
      fish.w += 15;
     fish.h += 15;
     fish.r += 8;
-   
-
+    biteSound.play();
+    for(var i = 0; i < fish.length; i++){
+        console.log(fish[i]);
+    }
     CheckForSize(fish);
     //fish gets too far it will come back AND COME BAKC A LITLE BIGGER
   } else if(distance > 1000){
@@ -97,17 +97,22 @@ var checkForCollision = function(x1, y1, fish) {
      fish.w += 1;
     fish.h += 1;
     fish.r += 1;
+
   }
   // CheckForSize();
   return distance;
+
 };
+
 function endGame(){
   score = 0;
   x = 350;
   y = 650;
   w = 30;
-  h = 40;
+  h = 45;
   r = 45;
+  //cowboySound.play();
+
    scorebored.textContent = "Score: " + score;
    //ADD THE SIZE BACK TO ORIGINAL SIZE
    for(var i = 0; i < fish.length; i++){
@@ -118,23 +123,15 @@ function endGame(){
       fish[i].r = fish[i].or; 
       }
 }
+
 //check size of fish
 var CheckForSize = function(fish){
-    if ( fish.w > w && fish.h > h){
+    if ( fish.w >= w && fish.h >= h){
       console.log ('gulp!');
-      /* swal(  'Gulp...',
+      //alert("game over");
+      swal(  'Gulp...',
   'BETTER LUCK NEXT TIME!',
-  'error');*/
-    swal({
-  title: 'GULP!',
-  text: 'BETTER LUCK NEXT TIME!',
-  imageUrl: 'img/fishfood.jpg',
-  imageWidth: 400,
-  imageHeight: 200,
-  imageAlt: 'Custom image',
-  animation: false
-})
-
+  'error');
       endGame();
       // newGame();
     }else /*(fish[i].w < w && fish[i].h < h) */{
@@ -142,12 +139,28 @@ var CheckForSize = function(fish){
       h += 4;
       r += 3;
       score += 1;
+      if(score === 100){
+        swal(  'You Won',
+  'You are the biggest fish!',
+  'success');
+      endGame();
+      }
+     
+     // console.log(fish);
       //ADD SCORE
       scorebored.textContent = "Score: " + score;
       console.log("grew");
     /*  r += 10%;*/
     }
 }
+
+function playAudio() { 
+    music.play(); 
+} 
+function pauseAudio() { 
+    music.pause(); 
+} 
+
 //main fish or circle
 function draw() {
 
@@ -162,7 +175,7 @@ function draw() {
    checkForCollision(x, y, fish[7]);
    renderPlayer1();
    renderFish();
- 
+   
 
 }
 

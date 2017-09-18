@@ -1,4 +1,4 @@
-html, body{
+/*html, body{
     margin: 0;
     padding: 0;
     font-family: 'Marck Script', cursive;
@@ -10,7 +10,7 @@ body{
     background-size:cover;
     background-position: center;
     /*background-height: 2000px;*/
-}
+/*}
 #scorebored{
     border: 5px solid yellow;
     position: relative;
@@ -36,13 +36,102 @@ body{
 
 }
 canvas{
-    border: 1px solid black;
+    border: 10px solid black;
     background-image: url("../img/aquarium2.jpg");
      background-size:cover;
      position: absolute;
      left: 35%;
-   
     border-radius: 10px;
     box-shadow: 10px 10px 5px black;
+    }*/
 
+    body{
+        background-image: url("../img/restraunt1.jpg");
+        background-size:cover;
+        background-position: center;
+        background-repeat: none;
+
+    }
+    button{
+        background-color: yellow;
+    }
+    #container{
+        width: 1200;
+        margin: 0 auto;
+    }
+    #top{
+        width: 1200;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: -30%;
+         text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px lightblue;
+         text-decoration: underline;
+    }
+    #canvas{
+        width: 800px;
+        float: center;
+        background: blue;
+        background-image: url("../img/aquarium2.jpg");
+        background-size:cover;
+        border-radius: 10px;
+    }
+    #scorebored{
+        width: 260px;
+        float: center;
+        background: white;
+        display: inline-block;
+        background-color: yellow;
+        font-size: 50px;
+        
+    }
+@media screen and (max-width: 1000px) {
+    #container{
+        
+        width: 100%;
+        margin: 0 auto;
+
+    }
+    #top{
+        font-size: 20px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    #canvas{
+        width: 80%;
+        float: left;
+        
+    }
+    #scorebored{
+        width: 20%;
+        float: left;
+        background-color: yellow;
+        font-size: 100%;
+
+        
+    }
+}
+@media screen and (max-width: 600px) {
+    #container{
+        
+        width: 100%;
+        margin: 0 auto;
+
+    }
+    #top{
+        font-size: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    #canvas{
+        width: 95%;
+        float: left;
+    
+    }
+    #scorebored{
+        width: 5%;
+        float: left;
+        font-size: 100%;
+    
+    }
 }
