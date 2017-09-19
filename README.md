@@ -1,15 +1,26 @@
-# Project-1 the good, the bad, and the ugly...
-<section>
-<h1>Sites that helped me solve obstials </h1>
-<p><ul>
-	<li></li>
-</ul></p>
-</section>
-<section>
-	<h2>biggest obsticals</h2>
-	<p></p>
+Process:
 
-</section>
-<section>
-	<h2>general thought process</h2>
-</section>
+step 1: create a canvas. and begin to understand it
+	helpful video:
+step 2: place a circle on the canvas
+step 3: asign that circle to move with arrow keys
+step 4: add another object to canvas
+step 5: have that object move 
+	- first bug " all the objects kept flashing on the canvas"
+		-solution: have everything be created in the same function and update at the same time.
+step 6: draw objects decending from the top of the page
+	helpful video:
+step 7: replace objects with images
+step 8: collision detection
+	helpful video:
+step 9: game over function
+step 10: win function
+step 11: have fish respond on the top of the page if they had swam to far down
+step 12: add sound
+step 13: make responsive 
+
+in the future
+
+coming soon to a phone you own:
+touch responsive 
+

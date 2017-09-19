@@ -67,11 +67,8 @@ function pressArrowKeys (e) {
         case 39: //right
             x += dx;
             break;
-
-
     }
 }
-
 //check for collision
 var checkForCollision = function(x1, y1, fish) {
   var xDistance = fish.x - x1;
