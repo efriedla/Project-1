@@ -1,9 +1,9 @@
 var canvas;
 var ctx;
 var x = 350; //horizontal
-var y = 650; //vertical 
+var y = 650; //vertical
 var dx = 8; //volocity speed
-var dy = 8; 
+var dy = 8;
 var w = 30;
 var h = 45;
 var cW;
@@ -16,7 +16,7 @@ var waterSound = new Audio("audio/water.mp3");
 var splashSound = new Audio("audio/splash1.mp3");
 var cowboySound = new Audio("audio/cowboy.mp3");
 var biteSound = new Audio("audio/bite.mp3");
-var music = document.getElementById("myAudio");  
+var music = document.getElementById("myAudio");
 
 var fish = [
        { "id":"little1", "x":100,"y":-20,"w":90,"h":95, "r": 70, "ox":100,"oy":-90,"ow":90,"oh":95, "or": 70},
@@ -41,16 +41,16 @@ console.log("loaded");
 }
 //fishes swim down screen
 function renderFish(){
-    for(var i = 0; i < fish.length; i++){
-        var enemy = document.getElementById("enemy");
-        ctx.drawImage(enemy, fish[i].x , fish[i].y+=.8, fish[i].w, fish[i].h);
+  for(var i = 0; i < fish.length; i++){
+    var enemy = document.getElementById("enemy");
+      ctx.drawImage(enemy, fish[i].x , fish[i].y+=.8, fish[i].w, fish[i].h);
    }
 }
 //CREATE PLAYER ONE
 function renderPlayer1(){
   var fish2 = document.getElementById('fish2');
     ctx.drawImage(fish2, x, y, w, h);
-  
+
 }
 
 function pressArrowKeys (e) {
@@ -113,11 +113,11 @@ function endGame(){
    scorebored.textContent = "Score: " + score;
    //ADD THE SIZE BACK TO ORIGINAL SIZE
    for(var i = 0; i < fish.length; i++){
-      fish[i].x = fish[i].ox; 
-      fish[i].y = fish[i].oy; 
-      fish[i].w = fish[i].ow; 
-      fish[i].h = fish[i].oh; 
-      fish[i].r = fish[i].or; 
+      fish[i].x = fish[i].ox;
+      fish[i].y = fish[i].oy;
+      fish[i].w = fish[i].ow;
+      fish[i].h = fish[i].oh;
+      fish[i].r = fish[i].or;
       }
 }
 
@@ -142,7 +142,7 @@ var CheckForSize = function(fish){
   'success');
       endGame();
       }
-     
+
      // console.log(fish);
       //ADD SCORE
       scorebored.textContent = "Score: " + score;
@@ -151,12 +151,12 @@ var CheckForSize = function(fish){
     }
 }
 
-function playAudio() { 
-    music.play(); 
-} 
-function pauseAudio() { 
-    music.pause(); 
-} 
+function playAudio() {
+    music.play();
+}
+function pauseAudio() {
+    music.pause();
+}
 
 //main fish or circle
 function draw() {
@@ -172,9 +172,8 @@ function draw() {
    checkForCollision(x, y, fish[7]);
    renderPlayer1();
    renderFish();
-   
+
 
 }
 
- setInterval(draw, 30); 
-
+ setInterval(draw, 30);

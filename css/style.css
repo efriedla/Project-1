@@ -83,12 +83,12 @@ canvas{
         display: inline-block;
         background-color: yellow;
         font-size: 50px;
-        
+
     }
 @media screen and (max-width: 1000px) {
     #container{
-        
-        width: 100%;
+        max-width:100%;
+        height:auto;
         margin: 0 auto;
 
     }
@@ -100,7 +100,7 @@ canvas{
     #canvas{
         width: 80%;
         float: left;
-        
+
     }
     #scorebored{
         width: 20%;
@@ -108,12 +108,13 @@ canvas{
         background-color: yellow;
         font-size: 100%;
 
-        
+
     }
 }
 @media screen and (max-width: 600px) {
     #container{
-        
+        max-width:100%;
+        height:auto;
         width: 100%;
         margin: 0 auto;
 
@@ -126,12 +127,12 @@ canvas{
     #canvas{
         width: 95%;
         float: left;
-    
+
     }
     #scorebored{
         width: 5%;
         float: left;
         font-size: 100%;
-    
+
     }
 }
