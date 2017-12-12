@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Fish</title>
-   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css?family=Marck+Script" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Fish</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Marck+Script" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+
 <body>
-<audio id="myAudio">
+    <audio id="myAudio">
   <source src="audio/cowboy.mp3" type="audio/mpeg">
 </audio>
-<div id="container">
-<div id="top">
-<h1 id="fish" onmouseover="this.style.color='#fff98c';"
-onmouseout="this.style.color='#f7d704';">Fish</h1>
-<div>
-<button onclick="playAudio()" type="button">Play Audio</button>
-<button onclick="pauseAudio()" type="button">Pause Audio</button> 
-</div>
-<canvas id="canvas" width="700" height="700"></canvas>
-<div style="display:none;">
-  <img id="fish2" src="img/fish2.png">
-</div>
-  <div style="display:none;">
-    <img id="enemy" src="img/fish.png" >
-  </div>
-  </div>  
+    <div id="container">
+        <div id="top">
+            <h1 id="fish" onmouseover="this.style.color='#fff98c';" onmouseout="this.style.color='#f7d704';">Fish</h1>
+            <div>
+                <button onclick="playAudio()" type="button">Play Audio</button>
+                <button onclick="pauseAudio()" type="button">Pause Audio</button>
+            </div>
+            <canvas id="canvas" width="700" height="700"></canvas>
+            <div style="display:none;">
+                <img id="fish2" src="img/fish2.png">
+            </div>
+            <div style="display:none;">
+                <img id="enemy" src="img/fish.png">
+            </div>
+        </div>
 
-<h2 id="scorebored">
-</h2>
-</div>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+        <h2 id="scorebored">
+        </h2>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
+
 </html>
