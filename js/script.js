@@ -17,7 +17,7 @@ var splashSound = new Audio("audio/splash1.mp3");
 var cowboySound = new Audio("audio/cowboy.mp3");
 var biteSound = new Audio("audio/bite.mp3");
 var music = document.getElementById("myAudio");
-
+//ox means original corginates
 var fish = [{
         "id": "little1",
         "x": 100,
@@ -241,7 +241,6 @@ var CheckForSize = function(fish) {
         // console.log(fish);
         //ADD SCORE
         scorebored.textContent = "Score: " + score;
-        console.log("grew");
         /*  r += 10%;*/
     }
 }
@@ -268,8 +267,5 @@ function draw() {
     checkForCollision(x, y, fish[7]);
     renderPlayer1();
     renderFish();
-
-
 }
-
 setInterval(draw, 30);

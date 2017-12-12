@@ -4,23 +4,32 @@
 <head>
     <title>Fish</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Marck+Script" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+
+<head>
 
 <body>
     <audio id="myAudio">
   <source src="audio/cowboy.mp3" type="audio/mpeg">
 </audio>
+  <div class="container-fluid">
     <div id="container">
         <div id="top">
-            <h1 id="fish" onmouseover="this.style.color='#fff98c';" onmouseout="this.style.color='#f7d704';">Fish</h1>
-            <div>
-                <button onclick="playAudio()" type="button">Play Audio</button>
-                <button onclick="pauseAudio()" type="button">Pause Audio</button>
+            <h1 class="text-center" id="fish" onmouseover="this.style.color='#fff98c';" onmouseout="this.style.color='#f7d704';">Fish</h1>
+            <div class="row">
+                <button class="col-xs-4 col-md-2 col-md-offset-3" onclick="playAudio()" type="button">Play Audio</button>
+                <button class="col-xs-4 col-md-2 "onclick="pauseAudio()" type="button">Pause Audio</button>
+                <p class=" col-xs-4 col-md-2 col-md-offset-2"id="scorebored"></p>
+            
+              <canvas class="col-xs-10 col-md-offset-1" id="canvas" width="700" height="700"></canvas>
+              
             </div>
-            <canvas id="canvas" width="700" height="700"></canvas>
             <div style="display:none;">
                 <img id="fish2" src="img/fish2.png">
             </div>
@@ -29,9 +38,9 @@
             </div>
         </div>
 
-        <h2 id="scorebored">
-        </h2>
+        
     </div>
+  </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 </body>
